@@ -49,6 +49,14 @@ public abstract class Person {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public Person(String id, String name, String type) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+	}
+	
+	
 	
 	
 

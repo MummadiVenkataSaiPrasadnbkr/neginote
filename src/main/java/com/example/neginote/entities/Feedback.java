@@ -5,7 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,6 +19,24 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Feedback {
 	
+	
+	public Feedback() {
+		this.time=LocalDateTime.now();
+	}
+	
+	
+	public Feedback(Person givenBy, Student givenTo, String feedback, LocalDateTime time,
+			Set<Integer> visibility) {
+		super();
+		
+		this.givenBy = givenBy;
+		this.givenTo = givenTo;
+		this.feedback = feedback;
+		this.time = time;
+		this.visibility = visibility;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -32,7 +53,54 @@ public class Feedback {
 	
 	private LocalDateTime time;
 	
-	private Set<String> visibility = new HashSet<>();
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(
+			name="feedback_visibility",
+			joinColumns = @JoinColumn(name = "id")
+			
+			)
+	
+	private Set<Integer> visibility = new HashSet<>();
+	
+	private String audioPath;
+	private String videoPath;
+	private String imagePath;
+	
+
+	public String getAudioPath() {
+		return audioPath;
+	}
+
+
+	public void setAudioPath(String audioPath) {
+		this.audioPath = audioPath;
+	}
+
+
+	public String getVideoPath() {
+		return videoPath;
+	}
+
+
+	public void setVideoPath(String videoPath) {
+		this.videoPath = videoPath;
+	}
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
+	public void setVisibility(Set<Integer> visibility) {
+		this.visibility = visibility;
+	}
+
 
 	public Integer getId() {
 		return id;
@@ -74,12 +142,8 @@ public class Feedback {
 		this.time = time;
 	}
 
-	public Set<String> getVisibility() {
+	public Set<Integer> getVisibility() {
 		return visibility;
-	}
-
-	public void setVisibility(Set<String> visibility) {
-		this.visibility = visibility;
 	}
 	
 	

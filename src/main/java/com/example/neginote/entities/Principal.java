@@ -22,6 +22,10 @@ public class Principal extends Person{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+	public Principal(String id, String name, String type,Integer salary, String address) {
+		super(id, name, type);
+		this.salary = salary;
+		this.address = address;
+	}
 
 }

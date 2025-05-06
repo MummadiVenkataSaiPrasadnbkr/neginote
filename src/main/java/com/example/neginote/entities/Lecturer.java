@@ -29,7 +29,12 @@ public class Lecturer extends Person {
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
-	
+	public Lecturer(String id, String name, String type,Integer salary, String address, String dept) {
+		super(id, name, type);
+		this.salary = salary;
+		this.address = address;
+		this.dept = dept;
+	}
 	
 
 }

@@ -9,9 +9,16 @@ public class Hod extends Person{
 	private Integer salary;
 	private String address;
 	private String dept;
-	private String age;
+	private Integer age;
 	public Hod() {
 		this.setType("hod");
+	}
+	public Hod(String id, String name, String type,Integer salary, String address, String dept, Integer age) {
+		super(id, name, type);
+		this.salary = salary;
+		this.address = address;
+		this.dept = dept;
+		this.age = age;
 	}
 	public Integer getSalary() {
 		return salary;
@@ -31,5 +38,13 @@ public class Hod extends Person{
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	
+	
 
 }
